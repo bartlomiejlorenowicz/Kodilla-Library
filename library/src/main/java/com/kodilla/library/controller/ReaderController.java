@@ -1,13 +1,14 @@
 package com.kodilla.library.controller;
 
 import com.kodilla.library.domain.Reader;
-import com.kodilla.library.dto.domain.ReaderDto;
 import com.kodilla.library.dto.request.ReaderRequestDto;
 import com.kodilla.library.dto.response.ReaderResponseDto;
+import com.kodilla.library.dto.update.ReaderUpdateDto;
 import com.kodilla.library.mapper.ReaderMapper;
 import com.kodilla.library.service.ReaderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,4 +37,30 @@ public class ReaderController {
                 .toList();
     }
 
+    @GetMapping("/{id}")
+    public ReaderResponseDto getReaderById(@PathVariable Long id) {
+
+        Reader reader = readerService.getReader(id);
+        return ReaderMapper.toDto(reader);
+    }
+
+    @PatchMapping("/{id}")
+    public ReaderResponseDto updateReader(@PathVariable Long id,
+                                          @Valid @RequestBody ReaderUpdateDto dto) {
+
+        Reader updated = readerService.updateReader(id, dto);
+        return ReaderMapper.toDto(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReader(@PathVariable Long id) {
+        readerService.deleteReader(id);
+    }
+
+    @PatchMapping("/{id}/restore")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void restoreReader(@PathVariable Long id) {
+        readerService.restoreReader(id);
+    }
 }

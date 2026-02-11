@@ -10,7 +10,6 @@ public class ReaderMapper {
         Reader reader = new Reader();
         reader.setFirstName(dto.firstName());
         reader.setLastName(dto.lastName());
-        reader.setAccountCreatedAt(dto.accountCreated());
         return reader;
     }
 

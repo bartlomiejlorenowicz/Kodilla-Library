@@ -13,8 +13,5 @@ public record ReaderRequestDto(
         String firstName,
 
         @NotBlank
-        String lastName,
-
-        @NotNull
-        LocalDate accountCreated
+        String lastName
 ) {}

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
@@ -27,9 +28,11 @@ public class Reader {
 
     private LocalDate accountCreatedAt;
 
-    public Reader(String firstName, String lastName, LocalDate accountCreatedAt) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.accountCreatedAt = accountCreatedAt;
+    @Column(nullable = false)
+    private boolean deleted = false;
+
+    @PrePersist
+    public void onCreate() {
+        accountCreatedAt = LocalDate.now();
     }
 }
