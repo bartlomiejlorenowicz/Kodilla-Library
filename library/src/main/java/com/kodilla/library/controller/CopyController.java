@@ -1,11 +1,12 @@
 package com.kodilla.library.controller;
 
+import com.kodilla.library.domain.Copy;
+import com.kodilla.library.dto.response.AvailableCopiesDto;
+import com.kodilla.library.dto.response.CopyResponseDto;
+import com.kodilla.library.mapper.CopyMapper;
 import com.kodilla.library.service.CopyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -14,8 +15,17 @@ public class CopyController {
 
     private final CopyService copyService;
 
+    @PostMapping("/{titleId}")
+    public CopyResponseDto addCopy(@PathVariable Long titleId) {
+
+        Copy copy = copyService.addCopy(titleId);
+        return CopyMapper.toDto(copy);
+    }
+
     @GetMapping("/available/{titleId}")
-    public long countAvailableCopies(@PathVariable Long titleId) {
-        return copyService.countAvailableCopies(titleId);
+    public AvailableCopiesDto countAvailableCopies(@PathVariable Long titleId) {
+
+        long count = copyService.countAvailableCopies(titleId);
+        return new AvailableCopiesDto(titleId, count);
     }
 }

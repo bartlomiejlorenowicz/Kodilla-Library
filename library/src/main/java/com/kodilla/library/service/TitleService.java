@@ -6,6 +6,8 @@ import com.kodilla.library.repository.TitleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class TitleService {
@@ -19,5 +21,9 @@ public class TitleService {
     public Title getTitle(Long id) {
         return titleRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Title not found"));
+    }
+
+    public List<Title> getAllTitles() {
+        return titleRepository.findAll();
     }
 }

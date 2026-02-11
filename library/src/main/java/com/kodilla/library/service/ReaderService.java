@@ -6,6 +6,8 @@ import com.kodilla.library.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ReaderService {
@@ -19,6 +21,10 @@ public class ReaderService {
     public Reader getReader(Long id) {
         return readerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Reader not found"));
+    }
+
+    public List<Reader> getAllReaders() {
+        return readerRepository.findAll();
     }
 }
 
