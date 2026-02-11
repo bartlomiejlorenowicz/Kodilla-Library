@@ -29,10 +29,4 @@ public class Title {
 
     @OneToMany(mappedBy = "title", cascade = CascadeType.ALL)
     private List<Copy> copies;
-
-    public Title(String title, String author, int publicationYear) {
-        this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-    }
 }

@@ -4,6 +4,7 @@ package com.kodilla.library.controller;
 import com.kodilla.library.domain.Title;
 import com.kodilla.library.dto.request.TitleRequestDto;
 import com.kodilla.library.dto.response.TitleResponseDto;
+import com.kodilla.library.dto.update.TitleUpdateDto;
 import com.kodilla.library.mapper.TitleMapper;
 import com.kodilla.library.service.TitleService;
 import jakarta.validation.Valid;
@@ -35,5 +36,20 @@ public class TitleController {
                 .stream()
                 .map(TitleMapper::toDto)
                 .toList();
+    }
+
+    @GetMapping("/{id}")
+    public TitleResponseDto getTitleById(@PathVariable Long id) {
+
+        Title title = titleService.getTitle(id);
+        return TitleMapper.toDto(title);
+    }
+
+    @PatchMapping("/{id}")
+    public TitleResponseDto updateTitle(@PathVariable Long id,
+                                        @RequestBody TitleUpdateDto dto) {
+
+        Title updated = titleService.updateTitle(id, dto);
+        return TitleMapper.toDto(updated);
     }
 }
