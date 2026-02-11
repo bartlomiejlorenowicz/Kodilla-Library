@@ -19,6 +19,11 @@ Run application:
 
 ```Bash
 
+cd library
+```
+
+```Bash
+
 ./gradlew bootRun
 ```
    
