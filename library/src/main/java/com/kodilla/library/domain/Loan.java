@@ -29,10 +29,4 @@ public class Loan {
     private LocalDate borrowedAt;
 
     private LocalDate returnedAt;
-
-    public Loan(Copy copy, Reader reader, LocalDate borrowedAt) {
-        this.copy = copy;
-        this.reader = reader;
-        this.borrowedAt = borrowedAt;
-    }
 }
