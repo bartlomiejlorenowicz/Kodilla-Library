@@ -2,14 +2,26 @@
 
 ## How to run locally
 
-1. Clone repository:
-   git clone https://github.com/bartlomiejlorenowicz/Kodilla-Library.git
+Clone repository:
 
-2. Start database:
+`git clone https://github.com/bartlomiejlorenowicz/Kodilla-Library.git`
+```bash 
+ 
+cd Kodilla-Library
+```
+Start database:
+```Bash
+
    docker compose up -d
+```
+   
+Run application:
 
-3. Run application:
-   ./gradlew bootRun
+```Bash
+
+./gradlew bootRun
+```
+   
 
 Application runs on:
 http://localhost:8080
